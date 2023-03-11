@@ -1,5 +1,4 @@
-import { SHELF } from "./common/types/enums";
-import { Book } from "./common/types/types";
+import { IBook } from "./common/types/types";
 
 const api = "https://reactnd-books-api.udacity.com";
 
@@ -22,7 +21,7 @@ export const getAll = () =>
     .then((res) => res.json())
     .then((data) => data.books);
 
-export const update = (book: Book, shelf: any) =>
+export const update = (book: IBook, shelf: any) =>
   fetch(`${api}/books/${book.id}`, {
     method: "PUT",
     headers: {

@@ -2,6 +2,8 @@ import BookShelfChanger from "./BookShelfChanger";
 
 function Book(props: any) {
   return (
+    <li>
+
     <div className="book">
       <div className="book-top">
         <div
@@ -9,14 +11,15 @@ function Book(props: any) {
           style={{
             width: 128,
             height: 193,
-            backgroundImage:props.backgroundImage,
+            backgroundImage:`url(${props.imageUrl})`,
           }}
         ></div>
-        <BookShelfChanger />
+        <BookShelfChanger shelfDefaultValue={props.shelf} />
       </div>
       <div className="book-title">{props.title}</div>
       <div className="book-authors">{props.authors}</div>
     </div>
+    </li>
   );
 }
 export default Book;
