@@ -1,5 +1,3 @@
-import { IBook } from "./common/types/types";
-
 const api = "https://reactnd-books-api.udacity.com";
 
 let token = localStorage.token;
@@ -11,7 +9,7 @@ const headers = {
   Authorization: token,
 };
 
-export const get = (bookId: string) =>
+export const get = (bookId) =>
   fetch(`${api}/books/${bookId}`, { headers })
     .then((res) => res.json())
     .then((data) => data.book);
@@ -21,7 +19,7 @@ export const getAll = () =>
     .then((res) => res.json())
     .then((data) => data.books);
 
-export const update = (book: IBook, shelf: any) =>
+export const update = (book, shelf) =>
   fetch(`${api}/books/${book.id}`, {
     method: "PUT",
     headers: {
@@ -31,7 +29,7 @@ export const update = (book: IBook, shelf: any) =>
     body: JSON.stringify({ shelf }),
   }).then((res) => res.json());
 
-export const search = (query: any, maxResults: any) =>
+export const search = (query, maxResults) =>
   fetch(`${api}/search`, {
     method: "POST",
     headers: {
