@@ -1,16 +1,13 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import BooksContext from "../../store/Books.context";
 
 function BookShelfChanger(props) {
   const booksCtx = useContext(BooksContext);
-  const [shelf, setShelf] = useState();
+  const [shelf, setShelf] = useState(props.book.shelf);
   function changeBookShelfHandler(event) {
     setShelf(event.target.value);
     booksCtx.changeBookShelf(props.book, event.target.value);
   }
-  useEffect(() => {
-    setShelf(props.book.shelf);
-  },[])
   return (
     <div className="book-shelf-changer">
       <select
