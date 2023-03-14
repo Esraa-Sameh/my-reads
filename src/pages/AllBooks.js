@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import BookShelves from "../components/BookShelves";
+import BookShelves from "../components/BookShelves/BookShelves";
 import BooksContext from "../store/Books.context";
 import { useNavigate } from "react-router-dom";
 
@@ -20,7 +20,7 @@ function AllBooks() {
           </div>
         </div>
         <div className="open-search">
-          <a onClick={navigateToSearchPage}>Add a book</a>
+          <button onClick={navigateToSearchPage}>Add a book</button>
         </div>
       </div>
     );

@@ -1,7 +1,6 @@
-import BookShelfChanger from "./BookShelfChanger";
+import BookShelfChanger from "../BookShelfChanger/BookShelfChanger";
 
 function Book(props) {
-  console.log(props.book);
   return (
     <li key={props.book.id}>
       <div className="book">

@@ -1,6 +1,6 @@
 import classes from './Layout.module.css';
-import MainNavigation from './MainNavigation';
-function Layout (props: any) {
+import MainNavigation from './MainNavigation/MainNavigation';
+function Layout (props) {
     return (
         <div>
             <MainNavigation />

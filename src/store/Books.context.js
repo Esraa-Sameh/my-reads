@@ -29,7 +29,6 @@ export function BooksContextProvider(props) {
 
   function changeBookShelfHandler(book, newShelf) {
     update(book, newShelf).then((result) => {
-      console.log(result);
     });
     setBooks((prevBooks) => {
       let newBook = true;

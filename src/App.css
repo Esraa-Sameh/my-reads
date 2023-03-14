@@ -51,7 +51,7 @@ body,
   right: 25px;
   bottom: 25px;
 }
-.open-search a {
+.open-search button {
   display: block;
   width: 50px;
   height: 50px;
@@ -64,6 +64,7 @@ body,
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   font-size: 0;
   cursor: pointer;
+  border: none;
 }
 
 /* search page */
@@ -97,6 +98,8 @@ body,
   background-repeat: no-repeat;
   background-size: 28px;
   font-size: 0;
+  border: none;
+  cursor: pointer;
 }
 
 .search-books-results {

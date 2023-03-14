@@ -1,5 +1,5 @@
-import BookShelf from "./BookShelf";
-import { SHELF } from "../common/types/enums";
+import BookShelf from "../BookShelf/BookShelf";
+import { SHELF } from "../../common/types/enums";
 
 
 function BookShelves(props) {

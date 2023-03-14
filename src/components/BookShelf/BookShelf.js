@@ -1,4 +1,4 @@
-import Book from "./Book";
+import Book from "../Book/Book";
 
 function BookShelf(props) {
   return (

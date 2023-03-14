@@ -1,27 +1,41 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import { search } from "../BooksAPI";
 import { SHELF } from "../common/types/enums";
-import Book from "../components/Book";
+import Book from "../components/Book/Book";
+import BooksContext from "../store/Books.context";
+import { useNavigate } from "react-router-dom";
+
 
 function Search() {
   const [searchBooks, setSearchBooks] = useState([]);
   const [enteredFilter, setEnteredFilter] = useState();
   const [content, setContent] = useState();
   const inputRef = useRef();
+  const booksCtx = useContext(BooksContext);
+  const navigate = useNavigate();
+  function navigateToMainPage() {
+    navigate("/");
+  }
   useEffect(() => {
     if (enteredFilter === inputRef.current.value) {
-     const timer = setTimeout(() => {
+      const timer = setTimeout(() => {
         search(enteredFilter, 20).then((response) => {
           if (response && response.length && response.length !== 0) {
             let newBooks = [];
             for (let book of response) {
-              newBooks.push({
+              let newBook = {
                 id: book.id,
                 title: book.title,
                 authors: book.authors ? book.authors : [],
-                imageUrl: book.imageLinks ? book.imageLinks.smallThumbnail : null,
+                imageUrl: book.imageLinks
+                  ? book.imageLinks.smallThumbnail
+                  : null,
                 shelf: book.shelf ? book.shelf : SHELF.NONE,
-              });
+              };
+              for (let shelfBook of booksCtx.books) {
+                if (shelfBook.id === newBook.id) newBook = shelfBook;
+              }
+              newBooks.push(newBook);
             }
             setSearchBooks(newBooks);
           } else {
@@ -30,9 +44,11 @@ function Search() {
         });
       }, 500);
       //clean up function
-      return () => {clearTimeout(timer)}
+      return () => {
+        clearTimeout(timer);
+      };
     }
-  }, [enteredFilter, inputRef]);
+  }, [enteredFilter, inputRef, booksCtx.books]);
   useEffect(() => {
     let value;
     if (searchBooks) {
@@ -46,6 +62,12 @@ function Search() {
   return (
     <div className="search-books">
       <div className="search-books-bar">
+        <button
+          className="close-search"
+          onClick={() => navigateToMainPage()}
+        >
+          Close
+        </button>
         <div className="search-books-input-wrapper">
           <input
             ref={inputRef}
